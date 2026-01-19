@@ -1,0 +1,1092 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Giovanni Comex — Simulador de Importação</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family: system-ui, Arial, sans-serif;
+      background:#f6f8ff;
+      color:#111827;
+    }
+    header{
+      background:#0b5cff;
+      color:#fff;
+      padding:20px;
+    }
+    header h1{
+      margin:0;
+      font-size:22px;
+    }
+    header p{
+      margin:5px 0 0;
+      font-size:13px;
+      opacity:.9;
+    }
+    main{
+      max-width:1200px;
+      margin:auto;
+      padding:20px;
+    }
+    iframe{
+      width:100%;
+      height:90vh;
+      border:none;
+      background:#fff;
+      border-radius:12px;
+      box-shadow:0 10px 30px rgba(0,0,0,.1);
+    }
+    footer{
+      text-align:center;
+      font-size:12px;
+      color:#6b7280;
+      margin:20px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Giovanni Comex</h1>
+  <p>Simulador profissional de custos de importação</p>
+</header>
+
+<main>
+  <!-- AQUI COMEÇA O SIMULADOR -->
+  <!-- COLEI TODO O SEU SISTEMA DIRETO, SEM DEPENDER DE OUTROS ARQUIVOS -->
+
+  <!-- INÍCIO DO SIMULADOR -->
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Giovanni Comex — Simulador de Importação</title>
+
+  <style>
+    :root{
+      --blue:#0b5cff;
+      --blue2:#0a3ea8;
+      --ink:#111827;
+      --muted:#6b7280;
+      --bg:#f6f8ff;
+      --card:#ffffff;
+      --border:#e6e6ea;
+    }
+    * { box-sizing:border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: system-ui, Arial, sans-serif; }
+
+    .topbar{
+      background: linear-gradient(90deg, var(--blue), var(--blue2));
+      color:#fff;
+      padding: 18px 18px 16px;
+      box-shadow: 0 8px 20px rgba(11,92,255,.12);
+    }
+    .topbar-inner{
+      max-width: 1120px;
+      margin: 0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .brand{ display:flex; align-items:center; gap:12px; }
+    .mark{
+      width: 42px; height: 42px; border-radius: 12px;
+      background: rgba(255,255,255,.16);
+      display:flex; align-items:center; justify-content:center;
+      border: 1px solid rgba(255,255,255,.28);
+    }
+    .brand h1{ font-size: 20px; margin: 0; line-height:1.05; letter-spacing:.2px; }
+    .brand .sub{ font-size: 12px; opacity:.9; margin-top:4px; }
+    .note{ margin: 10px 0 0; color: rgba(255,255,255,.92); font-size: 12px; max-width: 980px; }
+
+    .container{
+      max-width: 1120px;
+      margin: 14px auto 28px;
+      padding: 0 18px;
+    }
+
+    .grid { display:grid; gap:12px; margin-top: 12px; }
+    .card {
+      background: var(--card);
+      border:1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      box-shadow: 0 10px 24px rgba(17,24,39,.05);
+    }
+    h2 { margin:0 0 10px; font-size: 15px; }
+    .muted { color: var(--muted); font-size: 13px; line-height:1.35; }
+    .warn { color:#b45309; }
+
+    .two { display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+    .row { display:grid; grid-template-columns: 260px 1fr; gap:10px; align-items:center; }
+    .row label { font-size: 13px; color:#111827; }
+
+    input, select {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid #d6d6dd;
+      font-size: 13px;
+      background:#fff;
+    }
+    input:focus, select:focus{ outline: 2px solid rgba(11,92,255,.18); border-color: rgba(11,92,255,.55); }
+
+    .btnbar { display:flex; gap:10px; flex-wrap:wrap; margin: 6px 0 10px; }
+    button {
+      padding: 10px 12px;
+      border: 0;
+      border-radius: 12px;
+      background: var(--blue);
+      color: white;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 10px 18px rgba(11,92,255,.14);
+    }
+    button.secondary { background:#374151; box-shadow:none; }
+
+    table { width:100%; border-collapse: collapse; table-layout: fixed; }
+    th, td { border-bottom:1px solid #eef0f5; padding:6px 6px; vertical-align: middle; }
+    th { background:#f7f9ff; font-weight:700; font-size: 12px; text-align:left; color:#0f172a; }
+    td { font-size: 12px; }
+    td.num { text-align:right; }
+
+    .tinput { padding:8px 10px; border-radius:10px; font-size:12px; }
+    .dims { display:grid; grid-template-columns: 1fr 1fr 1fr; gap:6px; }
+
+    .iconbtn {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      border: 0;
+      cursor: pointer;
+      background:#fee2e2;
+      color:#7f1d1d;
+      font-size: 16px;
+    }
+
+    .pill {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      background: rgba(11,92,255,.08);
+      color: var(--blue2);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .kpis{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap:10px;
+      margin-top:10px;
+    }
+    .kpi{
+      border:1px solid #e8ecff;
+      background: #fbfcff;
+      border-radius: 14px;
+      padding: 10px;
+    }
+    .kpi .label{ color: var(--muted); font-size: 12px; }
+    .kpi .value{ font-size: 16px; font-weight: 900; margin-top: 4px; color:#0f172a; }
+    .kpi.total{
+      border-color: rgba(11,92,255,.45);
+      background: rgba(11,92,255,.06);
+    }
+    .kpi.total .value{ color: var(--blue); font-size: 18px; }
+
+    /* ===== Drag-to-fill (alíquotas) ===== */
+    .fillcell{
+      position: relative;
+      width: 100%;
+    }
+    .fillcell input{
+      padding-right: 20px; /* espaço para a alça */
+    }
+    .fill-handle{
+      position:absolute;
+      right:4px;
+      bottom:4px;
+      width:10px;
+      height:10px;
+      border-radius:3px;
+      background: rgba(11,92,255,.95);
+      border:1px solid rgba(255,255,255,.9);
+      box-shadow: 0 2px 8px rgba(11,92,255,.25);
+      cursor: ns-resize;
+      opacity:.0;
+      transform: scale(.9);
+      transition: opacity .15s ease, transform .15s ease;
+      user-select:none;
+      touch-action:none;
+    }
+    .fillcell:hover .fill-handle,
+    .fillcell:focus-within .fill-handle{
+      opacity:1;
+      transform: scale(1);
+    }
+    .drag-fill-active .fill-handle{
+      opacity:1 !important;
+    }
+    .drag-fill-target{
+      outline: 2px solid rgba(11,92,255,.25);
+      border-radius: 10px;
+    }
+    /* ================================ */
+
+    @media (max-width: 900px) {
+      .two { grid-template-columns: 1fr; }
+      .row { grid-template-columns: 1fr; }
+      .kpis{ grid-template-columns: 1fr; }
+      table { display:block; overflow:auto; }
+      th, td { min-width: 130px; }
+      .topbar-inner{ flex-direction: column; align-items:flex-start; }
+      .note{ max-width: unset; }
+    }
+  </style>
+
+  <!-- PDF -->
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js"></script>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="mark" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+            <path d="M6 17.5V6.8c0-.9.7-1.6 1.6-1.6h8.8c.9 0 1.6.7 1.6 1.6v10.7c0 .9-.7 1.6-1.6 1.6H7.6c-.9 0-1.6-.7-1.6-1.6Z" stroke="white" stroke-width="1.6" opacity=".95"/>
+            <path d="M8.4 9.1h7.2M8.4 12h7.2M8.4 14.9h4.8" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <h1>Giovanni Comex</h1>
+          <div class="sub">Impostos no CIF total • CIF por item • Cubagem total</div>
+        </div>
+      </div>
+      <div class="muted" style="color:rgba(255,255,255,.92); font-size:12px;">
+        Relatório em PDF pronto para enviar ao cliente
+      </div>
+    </div>
+    <div class="topbar-inner">
+      <p class="note">
+        Impostos calculados sobre <b>CIF total</b> (FOB total + frete internacional + seguro). Depois o total de impostos é rateado para os itens pelo <b>CIF por item</b>.
+        Rateios: frete internacional e seguro por <b>cubagem</b>; frete nacional por <b>cubagem</b>; outras despesas por <b>quantidade</b>.
+      </p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="grid">
+
+      <div class="card">
+        <h2>Cliente</h2>
+        <div class="row">
+          <label for="clientName">Nome do cliente</label>
+          <input id="clientName" placeholder="Ex: João da Silva / Empresa X" />
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>1) Dados gerais (câmbio e fretes)</h2>
+        <div class="two">
+          <div class="row">
+            <label for="usdRate">Cotação do dólar (R$ por US$)</label>
+            <input id="usdRate" type="number" step="0.0001" value="5.00">
+          </div>
+          <div class="row">
+            <label for="intlFreightUsd">Frete internacional (US$)</label>
+            <input id="intlFreightUsd" type="number" step="0.01" value="0">
+          </div>
+          <div class="row">
+            <label for="insuranceUsd">Seguro internacional (US$)</label>
+            <input id="insuranceUsd" type="number" step="0.01" value="0">
+          </div>
+          <div class="row">
+            <label for="domFreightBrl">Frete nacional (R$)</label>
+            <input id="domFreightBrl" type="number" step="0.01" value="0">
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>2) Despesas extras (geral)</h2>
+
+        <div class="two">
+          <div class="row">
+            <label for="customsExpensesBrl">Despesas aduaneiras (R$)</label>
+            <input id="customsExpensesBrl" type="number" step="0.01" value="0">
+          </div>
+          <div class="row">
+            <label for="siscomexFeeBrl">Taxa SISCOMEX (R$)</label>
+            <input id="siscomexFeeBrl" type="number" step="0.01" value="0">
+          </div>
+
+          <div class="row">
+            <label for="dtaBrl">DTA (R$)</label>
+            <input id="dtaBrl" type="number" step="0.01" value="0">
+          </div>
+          <div class="row">
+            <label for="portStorageBrl">Armazenagem no porto (R$)</label>
+            <input id="portStorageBrl" type="number" step="0.01" value="0">
+          </div>
+
+          <div class="row">
+            <label for="portHandlingBrl">Movimentação no porto (R$)</label>
+            <input id="portHandlingBrl" type="number" step="0.01" value="0">
+          </div>
+          <div class="row">
+            <label for="afrmmAliq">AFRMM (% sobre frete internacional)</label>
+            <input id="afrmmAliq" type="number" step="0.01" value="0">
+          </div>
+
+          <div class="row">
+            <label for="includeAfrmmInExpenses">Incluir AFRMM nas “outras despesas”?</label>
+            <select id="includeAfrmmInExpenses">
+              <option value="1" selected>Sim</option>
+              <option value="0">Não</option>
+            </select>
+          </div>
+
+          <div class="row">
+            <label for="icmsPorDentroGlobal">ICMS “por dentro” (global)</label>
+            <select id="icmsPorDentroGlobal">
+              <option value="1" selected>Sim</option>
+              <option value="0">Não</option>
+            </select>
+          </div>
+        </div>
+
+        <p class="muted warn" style="margin-top:8px;">
+          AFRMM aqui = <b>(frete internacional em R$) × alíquota</b>. “Outras despesas” são rateadas por <b>quantidade</b>.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>3) Itens</h2>
+
+        <div class="btnbar">
+          <button onclick="addItem()">+ Adicionar item</button>
+          <button class="secondary" onclick="calcAll()">Calcular</button>
+          <button class="secondary" onclick="demoItems()">Inserir exemplo</button>
+          <button onclick="generatePDF()">Gerar PDF</button>
+        </div>
+
+        <table id="itemsTable">
+          <thead>
+            <tr>
+              <th style="width:150px;">Item</th>
+              <th style="width:95px;">NCM</th>
+              <th style="width:85px;">Qtd</th>
+              <th style="width:105px;">US$ unit</th>
+              <th style="width:95px;">Peso unit (kg)</th>
+              <th style="width:195px;">Dimensões (cm) C×L×A</th>
+              <th style="width:85px;">m³ unit</th>
+
+              <th style="width:75px;">II%</th>
+              <th style="width:75px;">IPI%</th>
+              <th style="width:75px;">PIS%</th>
+              <th style="width:80px;">COF%</th>
+              <th style="width:80px;">ICMS%</th>
+
+              <th style="width:120px;">CIF item (R$)</th>
+              <th style="width:120px;">Impostos item (R$)</th>
+
+              <th style="width:120px;">Frete nac (R$)</th>
+              <th style="width:120px;">Outras desp (R$)</th>
+
+              <th style="width:125px;">Total item (R$)</th>
+              <th style="width:140px;">Custo unit (R$)</th>
+              <th style="width:60px;">Ações</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+
+        <p class="muted" style="margin-top:8px;">
+          <b>CIF item</b> = FOB item + (frete int rateado por cubagem) + (seguro rateado por cubagem).
+          <b>Impostos</b> são calculados sobre <b>CIF total</b> e depois rateados por <b>CIF item</b>.
+        </p>
+      </div>
+
+      <div class="card">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+          <div class="pill">Resumo</div>
+          <div class="muted">Agora mostra: <b>CIF total</b> + <b>Cubagem total</b>.</div>
+        </div>
+
+        <div class="kpis">
+          <div class="kpi total">
+            <div class="label">TOTAL GERAL</div>
+            <div class="value" id="kpiTotal">—</div>
+          </div>
+          <div class="kpi">
+            <div class="label">CIF TOTAL (R$)</div>
+            <div class="value" id="kpiCifBrl">—</div>
+          </div>
+          <div class="kpi">
+            <div class="label">CUBAGEM TOTAL (m³)</div>
+            <div class="value" id="kpiCubTotal">—</div>
+          </div>
+        </div>
+
+        <div id="results" class="grid" style="margin-top:12px;"></div>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+  let lastCalcSnapshot = null;
+
+  const tbody = () => document.querySelector("#itemsTable tbody");
+  const getClientName = () => (document.getElementById("clientName").value || "").trim();
+
+  function fmtBRL(n){
+    const v = (isFinite(n) ? n : 0);
+    return "R$ " + v.toLocaleString("pt-BR",{minimumFractionDigits:2, maximumFractionDigits:2});
+  }
+  function fmtUSD(n){
+    const v = (isFinite(n) ? n : 0);
+    return "US$ " + v.toLocaleString("pt-BR",{minimumFractionDigits:2, maximumFractionDigits:2});
+  }
+  function num(n, d=6) { return (isFinite(n) ? n : 0).toLocaleString("pt-BR", { maximumFractionDigits: d }); }
+  function getVal(id) { return Number(document.getElementById(id).value || 0); }
+  function getSel(id) { return document.getElementById(id).value; }
+  function pctToDec(p) { return (Number(p||0))/100; }
+
+  function removeRow(btn) {
+    const tr = btn.closest("tr");
+    tr?.remove();
+    calcAll();
+  }
+
+  /* ============================
+     DRAG-TO-FILL (ALÍQUOTAS)
+     ============================ */
+  const DRAG_COLS = new Set(["ii","ipi","pis","cof","icms"]);
+  const dragState = {
+    active: false,
+    col: null,
+    value: "",
+    startInput: null,
+    lastInput: null
+  };
+
+  function setInputValue(input, value){
+    input.value = value;
+    input.dispatchEvent(new Event("input", { bubbles:true }));
+    input.dispatchEvent(new Event("change", { bubbles:true }));
+  }
+
+  function isAliqInput(el){
+    return el && el.tagName === "INPUT" && el.dataset && DRAG_COLS.has(el.dataset.col);
+  }
+
+  function clearDragTargets(){
+    document.querySelectorAll(".drag-fill-target").forEach(el => el.classList.remove("drag-fill-target"));
+  }
+
+  function startDragFill(handleEl){
+    const cell = handleEl.closest(".fillcell");
+    if (!cell) return;
+    const input = cell.querySelector("input");
+    if (!input || !isAliqInput(input)) return;
+
+    dragState.active = true;
+    dragState.col = input.dataset.col;
+    dragState.value = input.value;
+    dragState.startInput = input;
+    dragState.lastInput = input;
+
+    document.body.classList.add("drag-fill-active");
+    input.classList.add("drag-fill-target");
+  }
+
+  function applyDragFillTo(targetInput){
+    if (!dragState.active) return;
+    if (!isAliqInput(targetInput)) return;
+    if (targetInput.dataset.col !== dragState.col) return;
+    if (dragState.lastInput === targetInput) return;
+
+    clearDragTargets();
+    targetInput.classList.add("drag-fill-target");
+    dragState.lastInput = targetInput;
+
+    setInputValue(targetInput, dragState.value);
+  }
+
+  function endDragFill(){
+    if (!dragState.active) return;
+    dragState.active = false;
+    dragState.col = null;
+    dragState.value = "";
+    dragState.startInput = null;
+    dragState.lastInput = null;
+
+    document.body.classList.remove("drag-fill-active");
+    clearDragTargets();
+    // opcional: recalcula ao soltar
+    calcAll();
+  }
+
+  // Eventos globais: mouse/touch
+  document.addEventListener("mouseover", (e) => {
+    if (!dragState.active) return;
+    const el = e.target;
+    if (isAliqInput(el)) applyDragFillTo(el);
+  });
+
+  document.addEventListener("mouseup", () => endDragFill());
+  document.addEventListener("touchend", () => endDragFill());
+  document.addEventListener("touchcancel", () => endDragFill());
+
+  document.addEventListener("touchmove", (e) => {
+    if (!dragState.active) return;
+    const t = e.touches && e.touches[0];
+    if (!t) return;
+    const el = document.elementFromPoint(t.clientX, t.clientY);
+    if (isAliqInput(el)) applyDragFillTo(el);
+  }, { passive:true });
+  /* ============================ */
+
+  function fillAliqCellHTML(col, step, value){
+    // col = ii|ipi|pis|cof|icms
+    return `
+      <div class="fillcell" data-col="${col}">
+        <input class="tinput" data-col="${col}" type="number" step="${step}" value="${value}">
+        <span class="fill-handle" title="Arraste para copiar"></span>
+      </div>
+    `;
+  }
+
+  function addItem(data = {}) {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td><input class="tinput" value="${data.name ?? ""}" placeholder="Ex: Produto A"></td>
+      <td><input class="tinput" value="${data.ncm ?? ""}" placeholder="Ex: 8517.12.31"></td>
+      <td><input class="tinput" type="number" step="1" value="${data.qty ?? 1}"></td>
+      <td><input class="tinput" type="number" step="0.01" value="${data.usd ?? 0}"></td>
+      <td><input class="tinput" type="number" step="0.001" value="${data.peso ?? 0}"></td>
+
+      <td>
+        <div class="dims">
+          <input class="tinput" type="number" step="0.1" value="${data.l ?? 0}" placeholder="C">
+          <input class="tinput" type="number" step="0.1" value="${data.w ?? 0}" placeholder="L">
+          <input class="tinput" type="number" step="0.1" value="${data.h ?? 0}" placeholder="A">
+        </div>
+      </td>
+      <td class="num cub">0</td>
+
+      <td>${fillAliqCellHTML("ii", "0.01", (data.ii ?? 60))}</td>
+      <td>${fillAliqCellHTML("ipi","0.01", (data.ipi ?? 0))}</td>
+      <td>${fillAliqCellHTML("pis","0.01", (data.pis ?? 2.10))}</td>
+      <td>${fillAliqCellHTML("cof","0.01", (data.cof ?? 9.65))}</td>
+      <td>${fillAliqCellHTML("icms","0.01",(data.icms ?? 18))}</td>
+
+      <td class="num cifItem">R$ 0,00</td>
+      <td class="num impItem">R$ 0,00</td>
+
+      <td class="num fn">R$ 0,00</td>
+      <td class="num od">R$ 0,00</td>
+
+      <td class="num total">R$ 0,00</td>
+      <td class="num unit" style="font-weight:900; color:#0b5cff;">R$ 0,00</td>
+      <td class="num">
+        <button class="iconbtn" title="Excluir item" onclick="removeRow(this)">🗑️</button>
+      </td>
+    `;
+
+    // Liga o mousedown/touchstart no handle dessa linha
+    tr.querySelectorAll(".fill-handle").forEach(h => {
+      h.addEventListener("mousedown", (e) => {
+        e.preventDefault();
+        startDragFill(h);
+      });
+      h.addEventListener("touchstart", (e) => {
+        e.preventDefault();
+        startDragFill(h);
+      }, { passive:false });
+    });
+
+    tbody().appendChild(tr);
+  }
+
+  function demoItems() {
+    tbody().innerHTML = "";
+    addItem({ name:"Produto A", ncm:"8504.40.90", qty:10, usd:20,  peso:0.35, l:30, w:20, h:10, ii:60, ipi:0,  pis:2.10, cof:9.65, icms:18 });
+    addItem({ name:"Produto B", ncm:"3926.90.90", qty:5,  usd:50,  peso:0.80, l:40, w:30, h:20, ii:14, ipi:5,  pis:2.10, cof:9.65, icms:12 });
+    addItem({ name:"Produto C", ncm:"8471.30.12", qty:2,  usd:200, peso:2.10, l:60, w:40, h:30, ii:0,  ipi:0,  pis:0,    cof:0,    icms:0 });
+    calcAll();
+  }
+
+  function readItems() {
+    const rows = [...tbody().querySelectorAll("tr")];
+    return rows.map((tr) => {
+      const inputs = tr.querySelectorAll("input");
+
+      const name = inputs[0].value || "Item";
+      const ncm  = inputs[1].value || "";
+
+      const qty  = Number(inputs[2].value || 0);
+      const usdU = Number(inputs[3].value || 0);
+      const pesoU= Number(inputs[4].value || 0);
+
+      const l = Number(inputs[5].value || 0);
+      const w = Number(inputs[6].value || 0);
+      const h = Number(inputs[7].value || 0);
+
+      // Agora as alíquotas são inputs com data-col, mas a ordem permanece estável
+      const iiP   = Number(inputs[8].value || 0);
+      const ipiP  = Number(inputs[9].value || 0);
+      const pisP  = Number(inputs[10].value || 0);
+      const cofP  = Number(inputs[11].value || 0);
+      const icmsP = Number(inputs[12].value || 0);
+
+      const cubUnit = (l * w * h) / 1_000_000;
+      const cubTot  = cubUnit * qty;
+
+      const fobUsd  = usdU * qty;
+
+      return {
+        tr, name, ncm,
+        qty, usdU, pesoU,
+        l, w, h,
+        ii: pctToDec(iiP),
+        ipi: pctToDec(ipiP),
+        pis: pctToDec(pisP),
+        cof: pctToDec(cofP),
+        icms: pctToDec(icmsP),
+        cubUnit, cubTot, fobUsd
+      };
+    });
+  }
+
+  function safeShareCub(itCub, totalCub, totalFobUsd, itFobUsd){
+    if (totalCub > 0) return itCub / totalCub;
+    return (totalFobUsd > 0) ? (itFobUsd / totalFobUsd) : 0;
+  }
+  function safeShareQty(itQty, totalQty, totalFobUsd, itFobUsd){
+    if (totalQty > 0) return itQty / totalQty;
+    return (totalFobUsd > 0) ? (itFobUsd / totalFobUsd) : 0;
+  }
+  function safeShareCif(itCif, totalCif){
+    if (totalCif > 0) return itCif / totalCif;
+    return 0;
+  }
+
+  function calcAll() {
+    const clientName = getClientName();
+
+    const usdRate = getVal("usdRate");
+    const intlFreightUsd = getVal("intlFreightUsd");
+    const insuranceUsd   = getVal("insuranceUsd");
+    const domFreightBrl  = getVal("domFreightBrl");
+
+    const customsExpensesBrl = getVal("customsExpensesBrl");
+    const siscomexFeeBrl     = getVal("siscomexFeeBrl");
+    const dtaBrl             = getVal("dtaBrl");
+    const portStorageBrl     = getVal("portStorageBrl");
+    const portHandlingBrl    = getVal("portHandlingBrl");
+
+    const afrmmAliq          = pctToDec(getVal("afrmmAliq"));
+    const includeAfrmmInExpenses = getSel("includeAfrmmInExpenses") === "1";
+
+    const icmsPorDentroGlobal = getSel("icmsPorDentroGlobal") === "1";
+
+    const items = readItems();
+    if (items.length === 0) {
+      document.getElementById("results").innerHTML = "<div class='muted'>Adicione pelo menos 1 item.</div>";
+      lastCalcSnapshot = null;
+      return;
+    }
+
+    const totalFobUsd = items.reduce((s, it) => s + it.fobUsd, 0);
+    const totalFobBrl = totalFobUsd * usdRate;
+
+    const totalCub  = items.reduce((s, it) => s + it.cubTot, 0);
+    const totalQty  = items.reduce((s, it) => s + it.qty, 0);
+
+    const intlFreightBrl = intlFreightUsd * usdRate;
+    const insuranceBrl   = insuranceUsd * usdRate;
+
+    const afrmmBrl = intlFreightBrl * afrmmAliq;
+
+    const otherExpensesTotal =
+      customsExpensesBrl +
+      siscomexFeeBrl +
+      dtaBrl +
+      portStorageBrl +
+      portHandlingBrl +
+      (includeAfrmmInExpenses ? afrmmBrl : 0);
+
+    // CIF total (base total para impostos)
+    const cifUsd = totalFobUsd + intlFreightUsd + insuranceUsd;
+    const cifBrl = cifUsd * usdRate;
+
+    // Primeiro: montar CIF por item (por cubagem)
+    const itemCalc = items.map(it => {
+      const shareCub = safeShareCub(it.cubTot, totalCub, totalFobUsd, it.fobUsd);
+
+      const fobBrl = it.fobUsd * usdRate;
+      const freightIntlItemBrl = intlFreightBrl * shareCub;
+      const insuranceItemBrl   = insuranceBrl * shareCub;
+
+      const cifItemBrl = fobBrl + freightIntlItemBrl + insuranceItemBrl;
+
+      // Rateio de frete nacional (por cubagem) e outras despesas (por quantidade)
+      const shareQty = safeShareQty(it.qty, totalQty, totalFobUsd, it.fobUsd);
+      const freightNatItemBrl = domFreightBrl * shareCub;
+      const otherExpItemBrl   = otherExpensesTotal * shareQty;
+
+      return {
+        it,
+        shareCub,
+        shareQty,
+        fobBrl,
+        cifItemBrl,
+        freightNatItemBrl,
+        otherExpItemBrl
+      };
+    });
+
+    const totalCifItems = itemCalc.reduce((s, x) => s + x.cifItemBrl, 0);
+
+    // Segundo: calcular IMPOSTOS NO TOTAL (cadeia)
+    let II_total = 0;
+    let IPI_total = 0;
+    let PIS_total = 0;
+    let COF_total = 0;
+    let ICMS_total = 0;
+
+    const shareCifBy = (cifItem) => safeShareCif(cifItem, totalCifItems);
+
+    itemCalc.forEach(x => {
+      const baseCifTotalDoItem = cifBrl * shareCifBy(x.cifItemBrl);
+      II_total += baseCifTotalDoItem * x.it.ii;
+    });
+
+    const baseCifMaisII_total = cifBrl + II_total;
+
+    itemCalc.forEach(x => {
+      const baseDoItem = baseCifMaisII_total * shareCifBy(x.cifItemBrl);
+      IPI_total += baseDoItem * x.it.ipi;
+      PIS_total += baseDoItem * x.it.pis;
+      COF_total += baseDoItem * x.it.cof;
+    });
+
+    const B_total = cifBrl + II_total + IPI_total + PIS_total + COF_total;
+
+    if (icmsPorDentroGlobal) {
+      itemCalc.forEach(x => {
+        const aliq = x.it.icms;
+        const B_item = B_total * shareCifBy(x.cifItemBrl);
+        if (aliq > 0) ICMS_total += (B_item / (1 - aliq)) * aliq;
+      });
+    } else {
+      itemCalc.forEach(x => {
+        const aliq = x.it.icms;
+        const B_item = B_total * shareCifBy(x.cifItemBrl);
+        ICMS_total += B_item * aliq;
+      });
+    }
+
+    const impostosTotal = II_total + IPI_total + PIS_total + COF_total + ICMS_total;
+
+    // Terceiro: ratear impostosTotal para cada item por CIF_item
+    let sumTotal = 0;
+    const pdfItems = [];
+
+    itemCalc.forEach(x => {
+      const it = x.it;
+      const shareCifItem = shareCifBy(x.cifItemBrl);
+      const impostosItem = impostosTotal * shareCifItem;
+
+      const totalItem = x.cifItemBrl + impostosItem + x.freightNatItemBrl + x.otherExpItemBrl;
+      const custoUnit = (it.qty > 0) ? (totalItem / it.qty) : 0;
+
+      it.tr.querySelector(".cub").textContent = num(it.cubUnit);
+      it.tr.querySelector(".cifItem").textContent = fmtBRL(x.cifItemBrl);
+      it.tr.querySelector(".impItem").textContent = fmtBRL(impostosItem);
+      it.tr.querySelector(".fn").textContent = fmtBRL(x.freightNatItemBrl);
+      it.tr.querySelector(".od").textContent = fmtBRL(x.otherExpItemBrl);
+      it.tr.querySelector(".total").textContent = fmtBRL(totalItem);
+      it.tr.querySelector(".unit").textContent = fmtBRL(custoUnit);
+
+      sumTotal += totalItem;
+
+      pdfItems.push({
+        name: it.name, ncm: it.ncm, qty: it.qty,
+        usdU: it.usdU, cubU: it.cubUnit,
+        fobUsd: it.fobUsd,
+        cifItemBrl: x.cifItemBrl,
+        impostosItemBrl: impostosItem,
+        freightNatBrl: x.freightNatItemBrl,
+        otherExpBrl: x.otherExpItemBrl,
+        totalBrl: totalItem,
+        unitBrl: custoUnit
+      });
+    });
+
+    // KPIs
+    document.getElementById("kpiTotal").textContent = fmtBRL(sumTotal);
+    document.getElementById("kpiCifBrl").textContent = fmtBRL(cifBrl);
+    document.getElementById("kpiCubTotal").textContent = num(totalCub, 6);
+
+    // Programação de pagamento
+    const pag30 = totalFobBrl * 0.30;
+    const pag70 = totalFobBrl * 0.70;
+    const restanteCustos = Math.max(0, sumTotal - totalFobBrl);
+
+    document.getElementById("results").innerHTML = `
+      <div class="card" style="box-shadow:none; border-style:dashed;">
+        <div class="pill">CIF e Cubagem</div>
+        <div class="row"><div>FOB total</div><div style="font-weight:700;">${fmtUSD(totalFobUsd)} / ${fmtBRL(totalFobBrl)}</div></div>
+        <div class="row"><div>Frete internacional</div><div style="font-weight:700;">${fmtUSD(intlFreightUsd)} / ${fmtBRL(intlFreightBrl)}</div></div>
+        <div class="row"><div>Seguro</div><div style="font-weight:700;">${fmtUSD(insuranceUsd)} / ${fmtBRL(insuranceBrl)}</div></div>
+        <div class="row"><div>CIF total</div><div style="font-weight:900; color:#0b5cff;">${fmtUSD(cifUsd)} / ${fmtBRL(cifBrl)}</div></div>
+        <div class="row"><div>Cubagem total</div><div style="font-weight:900; color:#0b5cff;">${num(totalCub,6)} m³</div></div>
+      </div>
+
+      <div class="card" style="box-shadow:none; border-style:dashed;">
+        <div class="pill">Impostos no CIF total</div>
+        <div class="row"><div>II (total)</div><div>${fmtBRL(II_total)}</div></div>
+        <div class="row"><div>IPI (total)</div><div>${fmtBRL(IPI_total)}</div></div>
+        <div class="row"><div>PIS (total)</div><div>${fmtBRL(PIS_total)}</div></div>
+        <div class="row"><div>COFINS (total)</div><div>${fmtBRL(COF_total)}</div></div>
+        <div class="row"><div>ICMS (total)</div><div>${fmtBRL(ICMS_total)}</div></div>
+        <div class="row"><div style="font-weight:900;">Impostos (total)</div><div style="font-weight:900; color:#0b5cff;">${fmtBRL(impostosTotal)}</div></div>
+      </div>
+
+      <div class="card" style="box-shadow:none; border-style:dashed;">
+        <div class="pill">Programação de pagamento</div>
+        <div class="row"><div>30% do FOB (R$)</div><div style="font-weight:900; color:#0b5cff;">${fmtBRL(pag30)}</div></div>
+        <div class="row"><div>70% do FOB (R$)</div><div style="font-weight:900; color:#0b5cff;">${fmtBRL(pag70)}</div></div>
+        <div class="row"><div>Restante (todos os custos)</div><div style="font-weight:900; color:#0b5cff;">${fmtBRL(restanteCustos)}</div></div>
+      </div>
+
+      <div class="card" style="box-shadow:none; border-style:dashed;">
+        <div class="pill">Total geral</div>
+        <div class="row"><div style="font-weight:900;">TOTAL GERAL</div><div style="font-weight:900; color:#0b5cff; font-size:16px;">${fmtBRL(sumTotal)}</div></div>
+        <div class="row"><div>Cliente</div><div><b>${clientName || "(não informado)"}</b></div></div>
+      </div>
+    `;
+
+    lastCalcSnapshot = {
+      generatedAt: new Date(),
+      clientName,
+      usdRate,
+      totals: {
+        totalFobUsd, totalFobBrl,
+        cifUsd, cifBrl,
+        totalCub,
+        II_total, IPI_total, PIS_total, COF_total, ICMS_total,
+        impostosTotal,
+        sumTotal
+      },
+      paymentPlan: { pag30, pag70, restanteCustos },
+      items: pdfItems
+    };
+  }
+
+  function generatePDF() {
+    if (!lastCalcSnapshot) calcAll();
+    if (!lastCalcSnapshot) return;
+
+    const snap = lastCalcSnapshot;
+    const { jsPDF } = window.jspdf;
+
+    const doc = new jsPDF({ unit: "pt", format: "a4", orientation: "landscape" });
+    const pageW = doc.internal.pageSize.getWidth();
+    const marginX = 30;
+
+    const dt = snap.generatedAt.toLocaleString("pt-BR");
+    const client = snap.clientName ? snap.clientName : "(não informado)";
+
+    function drawBrandHeader(pageNumber, totalPages) {
+      doc.setFillColor(11, 92, 255);
+      doc.rect(0, 0, pageW, 56, "F");
+
+      doc.setFillColor(255,255,255);
+      doc.roundedRect(marginX, 12, 34, 34, 10, 10, "F");
+      doc.setDrawColor(11,92,255);
+      doc.setLineWidth(1);
+      doc.roundedRect(marginX, 12, 34, 34, 10, 10, "S");
+
+      doc.setFont("helvetica","bold");
+      doc.setTextColor(11,92,255);
+      doc.setFontSize(14);
+      doc.text("G", marginX+12, 36);
+
+      doc.setTextColor(255,255,255);
+      doc.setFont("helvetica","bold");
+      doc.setFontSize(16);
+      doc.text("Giovanni Comex", marginX + 46, 30);
+
+      doc.setFont("helvetica","normal");
+      doc.setFontSize(10);
+      doc.text(`Cliente: ${client}`, marginX + 46, 46);
+
+      doc.setFontSize(9);
+      doc.text(`Gerado em: ${dt}`, pageW - marginX, 30, { align: "right" });
+      doc.text(`Página ${pageNumber}/${totalPages}`, pageW - marginX, 46, { align: "right" });
+
+      doc.setTextColor(17,24,39);
+    }
+
+    const startY = 70;
+    doc.setDrawColor(232, 236, 255);
+    doc.setFillColor(248, 250, 255);
+    doc.roundedRect(marginX, startY, pageW - marginX*2, 66, 12, 12, "FD");
+
+    doc.setFont("helvetica","bold");
+    doc.setFontSize(12);
+    doc.setTextColor(10, 62, 168);
+    doc.text("Resumo (Total / CIF / Cubagem)", marginX + 14, startY + 20);
+
+    doc.setFont("helvetica","bold");
+    doc.setFontSize(18);
+    doc.setTextColor(11, 92, 255);
+    doc.text(fmtBRL(snap.totals.sumTotal), pageW - marginX - 14, startY + 42, { align:"right" });
+
+    doc.setTextColor(17,24,39);
+    doc.setFont("helvetica","normal");
+    doc.setFontSize(10);
+    doc.text(`CIF total: ${fmtUSD(snap.totals.cifUsd)} / ${fmtBRL(snap.totals.cifBrl)}`, marginX + 14, startY + 40);
+    doc.text(`Cubagem total: ${snap.totals.totalCub.toLocaleString("pt-BR",{maximumFractionDigits:6})} m³`, marginX + 14, startY + 56);
+
+    const impostosTot = [
+      ["II (total)", fmtBRL(snap.totals.II_total)],
+      ["IPI (total)", fmtBRL(snap.totals.IPI_total)],
+      ["PIS (total)", fmtBRL(snap.totals.PIS_total)],
+      ["COFINS (total)", fmtBRL(snap.totals.COF_total)],
+      ["ICMS (total)", fmtBRL(snap.totals.ICMS_total)],
+      ["IMPOSTOS (TOTAL)", fmtBRL(snap.totals.impostosTotal)],
+    ];
+
+    const pagamento = [
+      ["30% do FOB (R$)", fmtBRL(snap.paymentPlan.pag30)],
+      ["70% do FOB (R$)", fmtBRL(snap.paymentPlan.pag70)],
+      ["Restante (todos os custos)", fmtBRL(snap.paymentPlan.restanteCustos)],
+    ];
+
+    doc.autoTable({
+      startY: startY + 80,
+      head: [["Impostos no CIF total", "Valor"]],
+      body: impostosTot,
+      theme: "grid",
+      styles: { fontSize: 9, cellPadding: 4, overflow: "linebreak" },
+      headStyles: { fillColor: [245,245,245], textColor: [17,24,39] },
+      margin: { left: marginX, right: marginX },
+      tableWidth: (pageW - marginX*2 - 16) / 2,
+      didParseCell: (data) => {
+        if (data.section === "body" && data.row.index === impostosTot.length - 1) {
+          data.cell.styles.fontStyle = "bold";
+          data.cell.styles.textColor = [11,92,255];
+          data.cell.styles.fillColor = [235,243,255];
+        }
+      }
+    });
+    const leftEndY = doc.lastAutoTable.finalY;
+
+    doc.autoTable({
+      startY: startY + 80,
+      head: [["Programação de pagamento", "Valor"]],
+      body: pagamento,
+      theme: "grid",
+      styles: { fontSize: 9, cellPadding: 4, overflow: "linebreak" },
+      headStyles: { fillColor: [235,243,255], textColor: [10,62,168] },
+      margin: { left: marginX + (pageW - marginX*2 - 16) / 2 + 16, right: marginX },
+      tableWidth: (pageW - marginX*2 - 16) / 2,
+      didParseCell: (data) => {
+        if (data.section === "body" && data.column.index === 1) {
+          data.cell.styles.fontStyle = "bold";
+          data.cell.styles.textColor = [11, 92, 255];
+        }
+      }
+    });
+    const rightEndY = doc.lastAutoTable.finalY;
+    const afterTop = Math.max(leftEndY, rightEndY);
+
+    const itemRows = snap.items.map(it => ([
+      it.name,
+      it.ncm,
+      String(it.qty),
+      fmtUSD(it.usdU),
+      it.cubU.toFixed(6),
+      fmtUSD(it.fobUsd),
+      fmtBRL(it.cifItemBrl),
+      fmtBRL(it.impostosItemBrl),
+      fmtBRL(it.freightNatBrl),
+      fmtBRL(it.otherExpBrl),
+      fmtBRL(it.totalBrl),
+      fmtBRL(it.unitBrl)
+    ]));
+
+    doc.autoTable({
+      startY: afterTop + 12,
+      head: [["Item","NCM","Qtd","US$ unit","m³ unit","FOB (US$)","CIF item (R$)","Impostos item (R$)","Frete nac (R$)","Outras (R$)","Total (R$)","Custo unit (R$)"]],
+      body: itemRows,
+      theme: "grid",
+      styles: { fontSize: 8, cellPadding: 3, overflow: "linebreak", valign: "middle" },
+      headStyles: { fillColor: [245,245,245], textColor: [17,24,39] },
+      margin: { left: marginX, right: marginX, top: 62, bottom: 26 },
+      tableWidth: "auto",
+      pageBreak: "auto",
+      rowPageBreak: "avoid",
+      didParseCell: (data) => {
+        if (data.section === "body" && (data.column.index === 10 || data.column.index === 11)) {
+          data.cell.styles.fontStyle = "bold";
+          data.cell.styles.textColor = [11, 92, 255];
+          data.cell.styles.fillColor = [235, 243, 255];
+        }
+        if (data.section === "head" && (data.column.index === 10 || data.column.index === 11)) {
+          data.cell.styles.fontStyle = "bold";
+          data.cell.styles.textColor = [10, 62, 168];
+          data.cell.styles.fillColor = [235, 243, 255];
+        }
+      }
+    });
+
+    const totalPages = doc.getNumberOfPages();
+    for (let p = 1; p <= totalPages; p++) {
+      doc.setPage(p);
+      drawBrandHeader(p, totalPages);
+    }
+
+    const safeClient = client.replace(/[\\/:*?"<>|]+/g, "").slice(0, 40).trim();
+    const fileName = safeClient && safeClient !== "(não informado)"
+      ? `giovanni-comex-simulacao-${safeClient}.pdf`
+      : "giovanni-comex-simulacao.pdf";
+
+    doc.save(fileName);
+  }
+
+  // Inicializa com 1 item
+  addItem({ name:"", ncm:"", qty:1, usd:0, peso:0, l:0, w:0, h:0, ii:60, ipi:0, pis:2.10, cof:9.65, icms:18 });
+</script>
+
+</body>
+</html>
+
+
+  <!-- FIM DO SIMULADOR -->
+</main>
+
+<footer>
+  © 2026 · Giovanni Comex · Simulador de Importação
+</footer>
+
+</body>
+</html>
+
