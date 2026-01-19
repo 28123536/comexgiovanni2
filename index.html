@@ -287,6 +287,41 @@
   </div>
 
   <div class="container">
+    <!-- LOGIN E SIMULAÇÕES -->
+<div class="card">
+  <h2>Conta (salvar simulações)</h2>
+
+  <div class="two">
+    <div class="row">
+      <label>Email</label>
+      <input id="authEmail" placeholder="seu@email.com">
+    </div>
+
+    <div class="row">
+      <label>Senha</label>
+      <input id="authPass" type="password">
+    </div>
+  </div>
+
+  <div class="btnbar">
+    <button class="secondary" id="btnSignUp">Criar conta</button>
+    <button class="secondary" id="btnSignIn">Entrar</button>
+    <button class="secondary" id="btnSignOut">Sair</button>
+  </div>
+
+  <p class="muted" id="authStatus">Status: desconectado</p>
+</div>
+
+<div class="card">
+  <h2>Salvar simulação</h2>
+  <div class="btnbar">
+    <button id="btnSaveSim">Salvar simulação atual</button>
+  </div>
+
+  <div id="simList" class="grid" style="margin-top:10px;"></div>
+</div>
+<!-- FIM LOGIN -->
+
     <div class="grid">
 
       <div class="card">
@@ -1078,6 +1113,42 @@
 
 </body>
 </html>
+  <script type="module">
+  import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+  const SUPABASE_URL = "COLE_AQUI_SEU_PROJECT_URL";
+  const SUPABASE_KEY = "COLE_AQUI_SUA_ANON_KEY";
+
+  const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  const $ = (id) => document.getElementById(id);
+
+  $("btnSaveSim").onclick = async () => {
+    if (!window.lastCalcSnapshot) {
+      alert("Faça o cálculo antes de salvar");
+      return;
+    }
+
+    const { data } = await supabase.auth.getSession();
+    const user = data.session?.user;
+    if (!user) {
+      alert("Faça login primeiro");
+      return;
+    }
+
+    const snap = window.lastCalcSnapshot;
+
+    await supabase.from("simulations").insert({
+      user_id: user.id,
+      client_name: snap.clientName || null,
+      total_brl: snap.totals.sumTotal,
+      data: snap
+    });
+
+    alert("Simulação salva!");
+  };
+</script>
+
 
 
   <!-- FIM DO SIMULADOR -->
@@ -1089,4 +1160,5 @@
 
 </body>
 </html>
+
 
